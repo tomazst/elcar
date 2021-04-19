@@ -1,0 +1,9 @@
+
+  ${AnsiColor.BLUE}███████╗██╗     ${AnsiColor.GREEN}  ██████╗ █████╗ ██████╗
+  ${AnsiColor.BLUE}██╔════╝██║     ${AnsiColor.GREEN} ██╔════╝██╔══██╗██╔══██╗
+  ${AnsiColor.BLUE}█████╗  ██║     ${AnsiColor.GREEN} ██║     ███████║██████╔╝
+  ${AnsiColor.BLUE}██╔══╝  ██║     ${AnsiColor.GREEN} ██║     ██╔══██║██╔══██╗
+  ${AnsiColor.BLUE}███████╗███████╗${AnsiColor.GREEN} ╚██████╗██║  ██║██║  ██║
+  ${AnsiColor.BLUE}╚══════╝╚══════╝${AnsiColor.GREEN}  ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝
+
+${AnsiColor.BRIGHT_BLUE}:: ElCar ;)  :: Running JSF on Spring Boot ${spring-boot.version}

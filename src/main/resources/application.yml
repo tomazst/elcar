@@ -1,0 +1,20 @@
+# Disable thymeleaf. We use JSF
+spring:
+  thymeleaf:
+    enabled: false
+  mvc:
+    view:
+      suffix: .xhtml
+  application:
+    name: elcar
+  data:
+    mongodb:
+      # uri: mongodb+srv://admin:app4racle@cluster0.qo8kt.mongodb.net/elcar
+      # uri: mongodb://localhost:27017/elcar
+      host: localhost
+      port: 27017
+      database: elcar
+      username: elcar
+      password: elcar
+      authentication-database: admin
+

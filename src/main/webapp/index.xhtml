@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+
+    <ui:composition template="common/common.xhtml">
+        <ui:define name="content">
+            <h:form id="form-region-list">
+            <div class="container">
+
+                <h:commandButton value="Add New Region" type="button" styleClass="btn btn-primary">
+                    <f:param name="region-id" value="" />
+                    <f:ajax listener="#{regionSaleAction.findRegion}" render=":form-region:modal-region" onevent="editModal.show()" />
+                </h:commandButton>
+                <p />
+                <h:dataTable value="#{regionSaleAction.regionSales}" var="region" id="table-region-sales"
+                             styleClass="table table-striped table-hover table-light" headerClass="" >
+                    <h:column>
+                        <f:facet name = "header"></f:facet>
+                        #{regionSaleAction.regionSales.rowIndex + 1}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">ID</f:facet>
+                        #{region.id}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">Region</f:facet>
+                        #{region.region}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">Sale</f:facet>
+                        <h:outputText value="#{region.sale}">
+                            <f:convertNumber type="number" pattern="#,##0"/>
+                        </h:outputText>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">Year</f:facet>
+                        #{region.year}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name = "header">Car Type</f:facet>
+                        #{region.carType}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:commandButton value="Edit" type="button" styleClass="btn btn-primary">
+                            <f:param name="region-id" value="#{region.id}" />
+                            <f:ajax listener="#{regionSaleAction.findRegion}" render=":form-region:modal-region" onevent="editModal.show()" />
+                        </h:commandButton>
+
+                        <h:commandButton value="Delete" type="button" styleClass="btn btn-danger" style="margin-left: 10px">
+                            <f:param name="region-id" value="#{region.id}" />
+                            <f:ajax listener="#{regionSaleAction.findRegion}" render=":form-region:modal-region" onevent="deleteDialog.show()" />
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+
+            </div>
+            </h:form>
+
+            <!-- Edit form - Modal -->
+            <h:form id="form-region">
+            <div class="modal fade" id="regionModal" tabindex="-1" role="dialog" aria-labelledby="regionModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <h:panelGroup id="modal-region">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="regionModalLabel">Region #{regionSaleForm.id}</h5>
+                            <h:commandButton type="button" value="Close" styleClass="btn btn-sm btn-secondary" onclick="editModal.hide()"/>
+                        </div>
+                        <div class="modal-body">
+                            <ui:insert name="modal-content">
+                                <ui:include src="region.xhtml"></ui:include>
+                            </ui:insert>
+                        </div>
+                        </h:panelGroup>
+                        <div class="modal-footer">
+                            <h:commandButton type="button" value="Close" styleClass="btn btn-secondary" onclick="editModal.hide()"/>
+                            <h:commandButton type="button" action="#{regionSaleAction.save}" value="Save changes" styleClass="btn btn-primary" onclick="editModal.hide()">
+                                <f:ajax execute="@form" render="form-region-list"/>
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </h:form>
+
+            <!-- Delete dialog -->
+            <h:panelGroup id="dialog-confirm-delete">
+                <div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog" aria-labelledby="deleteDialogLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteDialogLabel">Deleting Region</h5>
+                                </div>
+                                <div class="modal-body">
+                                    Are you shore? This can't be reverted.
+                                </div>
+                            <div class="modal-footer">
+                                <h:commandButton type="button" value="Close" styleClass="btn btn-secondary" onclick="deleteDialog.hide()"/>
+
+                                <h:commandButton type="button" value="Delete" styleClass="btn btn-danger" onclick="deleteDialog.hide()">
+                                    <f:param name="region-id" value="#{regionSaleForm.id}" />
+                                    <f:ajax listener="#{regionSaleAction.deleteRegion}" render="form-region-list"/>
+                                </h:commandButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:panelGroup>
+
+            <script>
+                var editModal = new bootstrap.Modal(document.getElementById('regionModal'), {
+                    keyboard: false
+                })
+
+                var deleteDialog = new bootstrap.Modal(document.getElementById('deleteDialog'), {
+                    keyboard: false
+                })
+            </script>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

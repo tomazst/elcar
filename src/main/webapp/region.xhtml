@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition>
+        <div class="mb-3">
+            <label for="region-id" class="form-label">Region:</label>
+            <h:inputText id="region-id" styleClass="form-control" maxlength="100" value="#{regionSaleForm.country}" />
+        </div>
+        <div class="mb-3">
+            <label for="sales-id" class="form-label">Sales:</label>
+            <h:inputText id="sales-id" styleClass="form-control" maxlength="100" value="#{regionSaleForm.sale}" />
+        </div>
+        <div class="mb-3">
+            <label for="year-id" class="form-label">Year:</label>
+            <h:selectOneMenu id="year-id" styleClass="form-control" value="#{regionSaleForm.year}">
+                <f:selectItem itemValue = "2015" itemLabel = "2015" />
+                <f:selectItem itemValue = "2016" itemLabel = "2016" />
+                <f:selectItem itemValue = "2017" itemLabel = "2017" />
+                <f:selectItem itemValue = "2018" itemLabel = "2018" />
+                <f:selectItem itemValue = "2019" itemLabel = "2019" />
+                <f:selectItem itemValue = "2020" itemLabel = "2020" />
+                <f:selectItem itemValue = "2021" itemLabel = "2021" />
+            </h:selectOneMenu>
+        </div>
+        <div class="mb-3">
+            <label for="cartype-id" class="form-label">Car Type:</label>
+            <h:selectOneListbox id="cartype-id" styleClass="form-control"  value="#{regionSaleForm.carType}">
+                <f:selectItem itemValue = "NONE" itemLabel = "NONE" />
+                <f:selectItem itemValue = "PLUGIN_HYBRID" itemLabel = "PLUGIN_HYBRID" />
+                <f:selectItem itemValue = "BATTERY_ELECTRIC" itemLabel = "BATTERY_ELECTRIC" />
+            </h:selectOneListbox>
+        </div>
+        <div class="mb-3">
+            <label for="nonce-id" class="form-label">Nonce:</label>
+            <h:commandButton value="Add Some Nonce from https://jsonplaceholder.typicode.com/" type="button" styleClass="btn btn-light" style="margin-left: 10px">
+                <f:ajax listener="#{regionSaleAction.setSomeNonce}" render="nonce-id" />
+            </h:commandButton>
+            <h:outputText id="nonce-id" styleClass="form-control" value="#{regionSaleForm.nonce}" style="min-height: 100px; margin-top: 5px" />
+        </div>
+</ui:composition>
+
+</html>

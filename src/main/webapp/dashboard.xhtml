@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+
+<ui:composition template="common/common.xhtml">
+    <ui:define name="content">
+        <figure class="highcharts-figure">
+            <div id="container" style="height: 1200px"></div>
+        </figure>
+
+
+        <script>
+            var options = {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Sold Battery-Electric cars'
+                },
+                xAxis: {
+                    categories: [],
+                    title: {
+                        text: 'Regions'
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Cars quantity',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' millions'
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -40,
+                    y: 80,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor:
+                        Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: []
+            }
+
+            $(document).ready(function() {
+                $.get("/api/bar-chart", function (data, status) {
+                    //alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+                    options.series = data.series;
+                    options.xAxis.categories = data.categories;
+                    Highcharts.chart('container', options);
+                });
+            });
+
+
+
+        </script>
+
+
+
+    </ui:define>
+</ui:composition>
+
+</h:body>
+</html>

@@ -1,0 +1,12 @@
+mongock:
+  mongo-db:
+    read-concern: local
+    write-concern:
+      journal: false
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 0
+      database: elcar
