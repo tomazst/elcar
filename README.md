@@ -16,8 +16,7 @@ Implemented some call to external rest service. You can test this in a form by f
 
 For dashboard I used Highchart library and rest service for getting chart data.
 
-# Hi
-This app can be currently run as standalone app. It is not yet appropriate to run on Tomcat or Weblogic.
+This app can be currently run only as standalone app. It is not yet appropriate to run on Tomcat or Weblogic.
 
 ### Tested on environment
 - openjdk 11.0.2
