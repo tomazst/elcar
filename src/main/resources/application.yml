@@ -9,8 +9,6 @@ spring:
     name: elcar
   data:
     mongodb:
-      # uri: mongodb+srv://admin:app4racle@cluster0.qo8kt.mongodb.net/elcar
-      # uri: mongodb://localhost:27017/elcar
       host: localhost
       port: 27017
       database: elcar

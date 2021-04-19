@@ -22,6 +22,10 @@ This app can be currently run only as standalone app. It is not yet appropriate 
 - openjdk 11.0.2
 - maven 3.6.2
 
+### Setting the mongodb
+To change any mongo db settings go to "src/main/resources/application.yml" file. Now is set to local.
+I prepared some initial data to import. File is "src/main/resources/db/import.json". It will look much better if you import this data ;).
+
 ### Build
   mvn clean package spring-boot:repackage
 
