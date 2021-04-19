@@ -2,12 +2,12 @@
 Car sale per year. 
 
 The application is using next technologies:
-• based on Maven dependency manager
-• JSF framework
-• Mongo as database
-• Bootstrap library
-• Highchart library
-• Spring boot
+- based on Maven dependency manager
+- JSF framework
+- Mongo as database
+- Bootstrap library
+- Highchart library
+- Spring boot
 
 There is a list of electric car sales per year. You can add new ones in a modal dialog. 
 Implemented all CRUD methods for this list.
